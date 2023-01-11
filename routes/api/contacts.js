@@ -10,12 +10,7 @@ const {
   validateForUpdateStatus,
 } = require("../../controllers/contacts");
 const router = express.Router();
-
-const catchErrors = (action) => (req, res, next) =>
-  action(req, res).catch((e) => {
-    console.error(e);
-    next(e);
-  });
+const { catchErrors } = require("../../utils/catchErrors");
 
 router.get("/", catchErrors(getList));
 

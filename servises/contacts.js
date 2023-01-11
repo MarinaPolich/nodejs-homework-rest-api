@@ -1,23 +1,25 @@
 const Contacts = require("./schemas/contacts");
 
-async function listContacts() {
-  return Contacts.find();
+async function listContacts({ skip, limit, ...filter }) {
+  return Contacts.find(filter).skip(skip).limit(limit);
 }
 
-async function getById(contactId) {
-  return Contacts.findOne({ _id: contactId });
+async function getById(contactId, owner) {
+  return Contacts.findOne({ _id: contactId, owner });
 }
 
-async function removeContact(contactId) {
-  return Contacts.findByIdAndRemove({ _id: contactId });
+async function removeContact(contactId, owner) {
+  return Contacts.findByIdAndRemove({ _id: contactId, owner });
 }
 
 async function addContact(data) {
   return Contacts.create(data);
 }
 
-async function updateContact(contactId, data) {
-  return Contacts.findByIdAndUpdate({ _id: contactId }, data, { new: true });
+async function updateContact(contactId, owner, data) {
+  return Contacts.findByIdAndUpdate({ _id: contactId, owner }, data, {
+    new: true,
+  });
 }
 
 module.exports = {
