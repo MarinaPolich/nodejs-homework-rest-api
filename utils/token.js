@@ -1,6 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { resolve } = require("path");
-const { encode } = require("punycode");
 
 const generateToken = (payload) =>
   new Promise((resolve, reject) => {

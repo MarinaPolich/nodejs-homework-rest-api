@@ -1,6 +1,4 @@
 const fs = require("fs").promises;
-const { buffer, arrayBuffer } = require("stream/consumers");
-const { finished } = require("stream/promises");
 const Jimp = require("jimp");
 const {
   addUser,
@@ -56,6 +54,7 @@ const login = async (req, res) => {
     const token = await generateToken({ id: user._id });
     updateUser(user._id, { token });
     res
+      .status(200)
       .json({
         token,
         user: {
