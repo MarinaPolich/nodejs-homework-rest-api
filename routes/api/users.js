@@ -10,6 +10,9 @@ const {
   update,
   validateForUpdate,
   updateAvatar,
+  verifyToken,
+  validateForVerify,
+  verifyEmail,
 } = require("../../controllers/users");
 const { catchErrors } = require("../../utils/catchErrors");
 const userMiddleware = require("../../middlewares/user");
@@ -27,5 +30,8 @@ router.patch(
   [userMiddleware, upload.single("avatar")],
   catchErrors(updateAvatar)
 );
+
+router.get("/verify/:verificationToken", catchErrors(verifyToken));
+router.post("/verify", validateForVerify(), catchErrors(verifyEmail));
 
 module.exports = router;

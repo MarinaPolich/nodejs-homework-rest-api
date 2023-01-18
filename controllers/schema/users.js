@@ -9,7 +9,12 @@ const updateSchema = Joi.object({
   subscription: Joi.string().valid("starter", "pro", "business").required(),
 }).required();
 
+const verifySchema = Joi.object({
+  email: Joi.string().email().required(),
+}).required();
+
 module.exports = {
-    signupSchema,
-    updateSchema,
+  signupSchema,
+  updateSchema,
+  verifySchema,
 };

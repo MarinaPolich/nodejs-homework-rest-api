@@ -10,7 +10,7 @@ const {
   createSchema,
   updateSchema,
   updateSchemaStatus,
-} = require("./scema/contacts");
+} = require("./schema/contacts");
 
 const validateForCreate = () => {
   return validator(createSchema, "missing required name field");
